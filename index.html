@@ -36,6 +36,10 @@ background:rgba(0,0,0,0.85);
 backdrop-filter:blur(6px);
 }
 
+.nav-links{
+display:flex;
+}
+
 .nav-links a{
 margin-left:40px;
 text-decoration:none;
@@ -46,6 +50,22 @@ transition:0.3s;
 
 .nav-links a:hover{
 color:#ffd349;
+}
+
+/* HAMBURGER */
+
+.menu-toggle{
+display:none;
+flex-direction:column;
+cursor:pointer;
+gap:6px;
+}
+
+.menu-toggle span{
+width:28px;
+height:3px;
+background:white;
+transition:0.4s;
 }
 
 /* HERO */
@@ -155,7 +175,7 @@ gap:40px;
 margin-top:40px;
 }
 
-/* TARJETAS PREMIUM */
+/* TARJETAS */
 
 .card{
 background:rgba(255,255,255,0.05);
@@ -209,7 +229,7 @@ margin-bottom:40px;
 line-height:1.6;
 }
 
-/* MODAL IMAGEN */
+/* MODAL */
 
 .modal{
 display:none;
@@ -249,20 +269,11 @@ background:#000;
 /* ANIMACION */
 
 @keyframes fadeUp{
-
-0%{
-opacity:0;
-transform:translateY(40px);
+0%{opacity:0;transform:translateY(40px);}
+100%{opacity:1;transform:translateY(0);}
 }
 
-100%{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-/* RESPONSIVE */
+/* RESPONSIVE NAV */
 
 @media(max-width:900px){
 
@@ -274,15 +285,38 @@ grid-template-columns:1fr;
 font-size:42px;
 }
 
+.nav-links{
+position:absolute;
+top:80px;
+right:0;
+width:100%;
+flex-direction:column;
+background:rgba(0,0,0,0.95);
+display:none;
+text-align:center;
+padding:30px 0;
+}
+
+.nav-links a{
+margin:20px 0;
+font-size:20px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-toggle{
+display:flex;
+}
+
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- NAVBAR -->
 
@@ -290,215 +324,146 @@ font-size:42px;
 
 <div><strong>DC Cocktail</strong></div>
 
-<div class="nav-links">
+<div class="menu-toggle" id="menu-toggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
 
+<div class="nav-links" id="nav-links">
 <a href="#inicio">Inicio</a>
 <a href="#experiencias">Experiencias</a>
 <a href="#servicios">Servicios</a>
 <a href="#reservar">Reservar</a>
 <a href="menu.html">Menú</a>
-
 </div>
 
 </div>
-
 
 <!-- HERO -->
 
 <section class="hero" id="inicio">
-
 <div class="overlay"></div>
-
 <div class="hero-content">
-
 <img src="images/logocopa.png" class="logo">
-
 <h1>DC Cocktail Experience</h1>
-
 <p>Mobile Cocktail Bar | Private Events</p>
-
 <a href="menu.html" class="btn">Ver Menú</a>
-
 </div>
-
 </section>
 
+<!-- RESTO DEL CONTENIDO IGUAL (no lo modifiqué) -->
 
 <!-- EXPERIENCIAS -->
-
 <section class="section experiencias" id="experiencias">
-
 <div class="section-overlay"></div>
-
 <div class="section-content">
-
 <h2>Experiencias</h2>
-
 <a href="galeria.html" class="btn">Ver Galería</a>
-
 </div>
-
 </section>
-
 
 <!-- SERVICIOS -->
-
 <section class="section servicios" id="servicios">
-
 <div class="section-overlay"></div>
-
 <div class="section-content">
-
 <h2>Nuestros Servicios</h2>
-
 <div class="services">
-
 <div class="card">
-
 <h3>Bodas</h3>
-
 <p>Experiencias elegantes diseñadas para celebraciones inolvidables.</p>
-
 <button class="btn" onclick="openModal('images/bodas.jpg')">Explorar</button>
-
 </div>
-
 <div class="card">
-
 <h3>Eventos Privados</h3>
-
 <p>Eventos exclusivos con cócteles personalizados.</p>
-
 <button class="btn" onclick="openModal('images/privado.jpg')">Explorar</button>
-
 </div>
-
 <div class="card">
-
 <h3>Eventos Corporativos</h3>
-
 <p>Experiencias profesionales para empresas y marcas.</p>
-
 <button class="btn" onclick="openModal('images/corporativo.jpg')">Explorar</button>
-
 </div>
-
 </div>
-
 </div>
-
 </section>
-
 
 <!-- RESERVAR -->
-
 <section class="section reservar" id="reservar">
-
 <div class="section-overlay"></div>
-
 <div class="section-content">
-
 <div class="reserve-text">
-
 <h2>Contáctanos y diseñemos juntos una experiencia única</h2>
-
 <p>Creamos cócteles personalizados, una barra elegante y un servicio profesional para tu evento.</p>
-
-<a href="https://linktr.ee/dccocktailexperience" target="_blank" class="btn">
-
-Reserva tu experiencia
-
-</a>
-
+<a href="https://linktr.ee/dccocktailexperience" target="_blank" class="btn">Reserva tu experiencia</a>
 </div>
-
 </div>
-
 </section>
 
-
-<!-- MODAL IMAGEN -->
-
+<!-- MODAL -->
 <div class="modal" id="modal">
-
 <span class="close" onclick="closeModal()">✕</span>
-
 <img id="modal-img">
-
 </div>
 
-
 <footer>
-
 DC Cocktail Experience © 2026
-
 </footer>
-
 
 <script>
 
 /* NAVBAR SCROLL */
-
 window.addEventListener("scroll",function(){
-
 let navbar = document.getElementById("navbar");
-
 if(window.scrollY > 50){
-
 navbar.classList.add("scrolled");
-
 }else{
-
 navbar.classList.remove("scrolled");
-
 }
-
 });
 
+/* MENU TOGGLE */
+const toggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+toggle.addEventListener("click",()=>{
+navLinks.classList.toggle("active");
+});
+
+/* CERRAR MENU AL HACER CLICK */
+document.querySelectorAll(".nav-links a").forEach(link=>{
+link.addEventListener("click",()=>{
+navLinks.classList.remove("active");
+});
+});
 
 /* MODAL */
-
 function openModal(src){
-
 document.getElementById("modal").style.display="flex";
 document.getElementById("modal-img").src=src;
-
 }
 
 function closeModal(){
-
 document.getElementById("modal").style.display="none";
-
 }
 
-
 /* ANIMACION TARJETAS */
-
 const cards = document.querySelectorAll(".card");
 
 function revealCards(){
-
 let trigger = window.innerHeight * 0.85;
-
-cards.forEach(card => {
-
+cards.forEach(card=>{
 let cardTop = card.getBoundingClientRect().top;
-
 if(cardTop < trigger){
-
 card.classList.add("show");
-
 }
-
 });
-
 }
 
 window.addEventListener("scroll",revealCards);
 window.addEventListener("load",revealCards);
 
 </script>
-
 
 </body>
 </html>
