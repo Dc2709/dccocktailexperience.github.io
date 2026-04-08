@@ -1,15 +1,214 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <title>Galería</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Galería | DC Cocktail Experience</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, sans-serif;
+}
+
+body{
+background:url("images/galeriafondo.jpg") center/cover fixed no-repeat;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:-1;
+}
+
+/* BOTON REGRESO */
+
+.back{
+position:absolute;
+left:40px;
+top:40px;
+text-decoration:none;
+color:white;
+font-size:20px;
+transition:0.3s;
+}
+
+.back:hover{
+color:#ffd349;
+}
+
+/* TITULO */
+
+h1{
+font-size:55px;
+margin-top:60px;
+}
+
+.subtitle{
+margin-top:10px;
+margin-bottom:60px;
+font-size:22px;
+color:#ccc;
+}
+
+/* GRID GALERIA */
+
+.gallery{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+
+}
+
+.gallery img{
+
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
+transition:0.4s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.08);
+
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+
+}
+
+.lightbox img{
+
+max-width:85%;
+max-height:85%;
+border-radius:10px;
+
+}
+
+.close{
+
+position:absolute;
+top:40px;
+right:50px;
+font-size:40px;
+cursor:pointer;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.gallery{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.gallery{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h1>Mi Galería</h1>
+<div class="overlay"></div>
 
-<img src="imagen1.jpg" width="200">
-<img src="imagen2.jpg" width="200">
-<img src="imagen3.jpg" width="200">
+<a href="index.html" class="back">← Inicio</a>
+
+<h1>Nuestra Experiencia</h1>
+
+<p class="subtitle">Eventos, cócteles y momentos inolvidables</p>
+
+<div class="gallery">
+
+<img src="images/img1.jpg" onclick="openLightbox(this.src)">
+<img src="images/img2.jpg" onclick="openLightbox(this.src)">
+<img src="images/img3.jpg" onclick="openLightbox(this.src)">
+<img src="images/img4.jpg" onclick="openLightbox(this.src)">
+<img src="images/img5.jpg" onclick="openLightbox(this.src)">
+<img src="images/img6.jpg" onclick="openLightbox(this.src)">
+<img src="images/img7.jpg" onclick="openLightbox(this.src)">
+<img src="images/img8.jpg" onclick="openLightbox(this.src)">
+<img src="images/img9.jpg" onclick="openLightbox(this.src)">
+<img src="images/img10.jpg" onclick="openLightbox(this.src)">
+<img src="images/img11.jpg" onclick="openLightbox(this.src)">
+<img src="images/img12.jpg" onclick="openLightbox(this.src)">
+<img src="images/img13.jpg" onclick="openLightbox(this.src)">
+<img src="images/img14.jpg" onclick="openLightbox(this.src)">
+<img src="images/img15.jpg" onclick="openLightbox(this.src)">
+
+</div>
+
+
+<div class="lightbox" id="lightbox">
+
+<span class="close" onclick="closeLightbox()">✕</span>
+
+<img id="lightbox-img">
+
+</div>
+
+
+<script>
+
+function openLightbox(src){
+
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightbox-img").src=src;
+
+}
+
+function closeLightbox(){
+
+document.getElementById("lightbox").style.display="none";
+
+}
+
+</script>
+
 
 </body>
 </html>
