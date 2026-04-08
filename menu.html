@@ -1,89 +1,284 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<title>DC Cocktail Experience | Menú</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Menú | DC Cocktail Experience</title>
+
 <style>
 
-body{
-font-family: Arial;
-background-color:#0f0f0f;
-color:white;
-text-align:center;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, sans-serif;
 }
 
-header{
+body{
+background:url("images/menu.jpg") center/cover fixed no-repeat;
+color:white;
+text-align:center;
 padding:40px;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:-1;
+}
+
+.back{
+position:absolute;
+left:40px;
+top:40px;
+text-decoration:none;
+color:white;
+font-size:20px;
+transition:0.3s;
+}
+
+.back:hover{
+color:#ffd349;
 }
 
 h1{
-font-size:40px;
+font-size:55px;
+margin-top:60px;
 }
 
-.menu{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+.subtitle{
+margin-top:10px;
+margin-bottom:60px;
+font-size:22px;
+color:#ccc;
+}
+
+/* GRID */
+
+.menu-grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
 gap:40px;
-padding:40px;
+
 }
 
-.cocktail{
-background:#1a1a1a;
-padding:20px;
-border-radius:10px;
-width:250px;
-}
+.card{
 
-.cocktail h3{
-color:#d4af37;
-}
-
-button{
-padding:12px 25px;
-background:#d4af37;
-border:none;
-border-radius:5px;
+transition:0.4s;
 cursor:pointer;
+
 }
 
-a{
-color:black;
-text-decoration:none;
+.card img{
+
+width:100%;
+border-radius:10px;
+transition:0.4s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.1);
+
+}
+
+.card h3{
+
+margin-top:15px;
+font-size:20px;
+
+}
+
+.card p{
+
+font-size:14px;
+color:#ccc;
+
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+
+}
+
+.lightbox img{
+
+max-width:80%;
+max-height:80%;
+
+}
+
+.close{
+
+position:absolute;
+top:40px;
+right:40px;
+font-size:40px;
+cursor:pointer;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.menu-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.menu-grid{
+
+grid-template-columns:1fr;
+
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
-<h1>DC Cocktail Experience</h1>
-<h2>Signature Cocktail Menu</h2>
-</header>
+<div class="overlay"></div>
 
-<section class="menu">
+<a href="index.html" class="back">← Inicio</a>
 
-<div class="cocktail">
-<h3>Old Fashioned</h3>
-<p>Bourbon, azúcar, bitters, piel de naranja.</p>
+<h1>Menú de eventos</h1>
+
+<p class="subtitle">Selección de cócteles diseñados para elevar tu evento</p>
+
+<div class="menu-grid">
+
+
+<div class="card" onclick="openLightbox('images/paloma.png')">
+<img src="images/paloma.png">
+<h3>Paloma</h3>
+<p>Toronja + limón</p>
 </div>
 
-<div class="cocktail">
-<h3>Negroni</h3>
-<p>Gin, Campari, Vermouth Rosso.</p>
+<div class="card" onclick="openLightbox('images/margarita.png')">
+<img src="images/margarita.png">
+<h3>Margarita</h3>
+<p>Triple sec + limón</p>
 </div>
 
-<div class="cocktail">
-<h3>Martini</h3>
-<p>Gin o Vodka, Vermouth Dry, aceituna.</p>
+<div class="card" onclick="openLightbox('images/sunrise.png')">
+<img src="images/sunrise.png">
+<h3>Tequila Sunrise</h3>
+<p>Naranja + granadina</p>
 </div>
 
-</section>
+<div class="card" onclick="openLightbox('images/vodkatonic.png')">
+<img src="images/vodkatonic.png">
+<h3>Vodka Tonic</h3>
+<p>Tónica + limón</p>
+</div>
 
-<button>
-<a href="index.html">Volver</a>
-</button>
+<div class="card" onclick="openLightbox('images/sangria.png')">
+<img src="images/sangria.png">
+<h3>Sangría</h3>
+<p>Vino + fruta</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/sexonthebeach.png')">
+<img src="images/sexonthebeach.png">
+<h3>Sex on the Beach</h3>
+<p>Naranja + granadina</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/cubalibre.png')">
+<img src="images/cubalibre.png">
+<h3>Cuba Libre</h3>
+<p>Coca cola + limón</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/mintvelvet.png')">
+<img src="images/mintvelvet.png">
+<h3>Mint Velvet</h3>
+<p>Menta + leche</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/mojito.png')">
+<img src="images/mojito.png">
+<h3>Mojito</h3>
+<p>Menta + limón</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/espresso.png')">
+<img src="images/espresso.png">
+<h3>Espresso Martini</h3>
+<p>Espresso + coffee liquor</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/pinacolada.png')">
+<img src="images/pinacolada.png">
+<h3>Piña Colada</h3>
+<p>Piña + coco</p>
+</div>
+
+<div class="card" onclick="openLightbox('images/moscow.png')">
+<img src="images/moscow.png">
+<h3>Moscow Mule</h3>
+<p>Gengibre + limón</p>
+</div>
+
+</div>
+
+
+<div class="lightbox" id="lightbox">
+
+<span class="close" onclick="closeLightbox()">✕</span>
+
+<img id="lightbox-img">
+
+</div>
+
+
+<script>
+
+function openLightbox(src){
+
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightbox-img").src=src;
+
+}
+
+function closeLightbox(){
+
+document.getElementById("lightbox").style.display="none";
+
+}
+
+</script>
+
 
 </body>
 </html>
